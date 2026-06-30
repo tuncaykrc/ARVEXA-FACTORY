@@ -1,0 +1,9 @@
+android {
+    compileSdkVersion 31
+    buildToolsVersion "31.0.0"
+
+    defaultConfig {
+        targetSdkVersion 31
+        minSdkVersion 21
+    }
+}
