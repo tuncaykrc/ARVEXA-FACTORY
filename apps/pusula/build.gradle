@@ -1,0 +1,15 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.arvexa.pusula'
+    compileSdk 34
+    defaultConfig {
+        applicationId "com.arvexa.pusula"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+}
