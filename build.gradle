@@ -1,1 +1,19 @@
+// Bu, fabrikanın genel ayarlarıdır
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
 
+// Yeni eklenen her klasör, bir üretim birimidir
+subprojects {
+    apply plugin: 'com.android.application'
+    android {
+        compileSdkVersion 34
+        defaultConfig {
+            minSdkVersion 21
+            targetSdkVersion 34
+        }
+    }
+}
