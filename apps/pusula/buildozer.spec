@@ -13,3 +13,4 @@ android.api = 33
 android.ndk = 25b
 android.jdk = 17
 android.sdk = 33
+android.build_tools_version = 33.0.3
