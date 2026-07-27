@@ -7,8 +7,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Build with Buildozer
-        uses: ArtemSBulgakov/buildozer-action@v1
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          command: buildozer android debug
-          working-directory: apps/pusula
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+              git wget curl unzip libltdl-dev \
+              build-essential libssl-dev libffi-dev \
+              python3-dev python3-pip libffi-dev \
+              libxml2-dev libxslt1-dev zlib1g-dev \
+              openjdk-17-jdk autoconf libtool pkg-config
+
+      - name: Install Buildozer and Cython
+        run: |
+          pip install --upgrade pip
+          pip install --user cython==0.29.36 buildozer
+
+      - name: Run Buildozer
+        working-directory: apps/pusula
+        run: |
+          buildozer -v android debug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: package
+          path: apps/pusula/bin/*.apk
