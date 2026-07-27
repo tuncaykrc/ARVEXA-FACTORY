@@ -32,7 +32,7 @@ jobs:
         working-directory: apps/pusula
         run: |
           export PATH=$PATH:~/.local/bin
-          sed -i 's/build-tools;37.0.0/build-tools;33.0.0/g' ~/.buildozer/android/platform/android-sdk/tools/bin/sdkmanager || true
+          rm -rf .buildozer
           buildozer -v android debug
       - name: Upload APK
         uses: actions/upload-artifact@v4
