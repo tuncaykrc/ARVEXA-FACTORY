@@ -4,36 +4,16 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    container:
+      image: kivy/buildozer:latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-              git wget curl unzip libltdl-dev \
-              build-essential libssl-dev libffi-dev \
-              python3-dev python3-pip libffi-dev \
-              libxml2-dev libxslt1-dev zlib1g-dev \
-              openjdk-17-jdk autoconf libtool pkg-config
-
-      - name: Install Buildozer and Cython
-        run: |
-          pip install --upgrade pip
-          pip install --user cython==0.29.36 buildozer
-
-      - name: Run Buildozer
+      - name: Build APK
         working-directory: apps/pusula
-        run: |
-          # Buildozer'in global komut olarak bulunabilmesi için PATH ayarı
-          export PATH=$PATH:~/.local/bin
-          buildozer -v android debug
+        run: buildozer -v android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
