@@ -31,6 +31,8 @@ jobs:
       - name: Run Buildozer
         working-directory: apps/pusula
         run: |
+          # Buildozer'in global komut olarak bulunabilmesi için PATH ayarı
+          export PATH=$PATH:~/.local/bin
           buildozer -v android debug
 
       - name: Upload APK
