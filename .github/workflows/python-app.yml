@@ -7,9 +7,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout Repository
-        run: |
-          git clone https://github.com/${{ github.repository }}.git .
-          git checkout ${{ github.sha }}
+        uses: actions/checkout@v4
 
       - name: Install System Dependencies & Python
         run: |
