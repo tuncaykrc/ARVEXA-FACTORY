@@ -28,7 +28,7 @@ jobs:
           python3 -m pip install --upgrade pip
           python3 -m pip install --user cython==0.29.36 buildozer
 
-     - name: Run Buildozer
+      - name: Run Buildozer
         working-directory: apps/pusula
         run: |
           export PATH=$PATH:~/.local/bin
