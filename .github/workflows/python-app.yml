@@ -27,7 +27,6 @@ jobs:
           python3 -m pip install --user cython==0.29.36 buildozer
 
       - name: Run Buildozer
-        working-directory: arvexa_pusula
         run: |
           export PATH=$PATH:~/.local/bin
           rm -rf .buildozer bin
@@ -37,5 +36,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: package
-          path: arvexa_pusula/bin/*.apk
+          path: bin/*.apk
           if-no-files-found: error
